@@ -56,6 +56,7 @@ public class GridManager : MonoBehaviour
         return null;
     }
 
+    // DEBUG FUNCTION
     public void TileClicked(Tile clickedTile)
     {
         // Access information about the clicked tile
