@@ -183,6 +183,15 @@ public class CheckersBoard : MonoBehaviour
                 EndTurn();
 
             }
+            else
+            {
+                Debug.Log("8");
+                MovePiece(selectedPiece, x1, y1);
+
+                startDrag = Vector2.zero;
+                selectedPiece = null;
+                return; // this return statement is redundant
+            }
         }
     }
 
