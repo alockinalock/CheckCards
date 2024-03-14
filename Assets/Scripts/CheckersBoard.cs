@@ -107,7 +107,11 @@ public class CheckersBoard : MonoBehaviour
         if(IsMouseOverBoard())
         {
             p.SetHighlightStatus(status);
+            return;
         }
+
+        // if move is invalid
+        p.SetHighlightStatus(false);
     }
 
     private void SelectPiece(int x, int y)
@@ -217,6 +221,7 @@ public class CheckersBoard : MonoBehaviour
 
     private bool CheckVictory()
     {
+        // TODO: write the actual implementation
         return false;
     }
 
