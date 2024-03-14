@@ -59,11 +59,13 @@ public class CheckersBoard : MonoBehaviour
             // If a piece is selected, try to move it
             if (selectedPiece != null)
             {
+                HighlightSelectedPiece(selectedPiece, false);
                 TryMove((int)startDrag.x, (int)startDrag.y, x, y);
             }
             else // Otherwise, select the piece at the current mouse position
             {
                 SelectPiece(x, y);
+                HighlightSelectedPiece(selectedPiece, true);
             }
         }
 
@@ -96,6 +98,15 @@ public class CheckersBoard : MonoBehaviour
         else
         {
             mouseOver = new Vector2(-1, -1);
+        }
+    }
+
+    // For some reason, this function still works even if you do not pass in a value for p. Let's leave that for now...
+    private void HighlightSelectedPiece(Piece p, bool status)
+    {
+        if(IsMouseOverBoard())
+        {
+            p.SetHighlightStatus(status);
         }
     }
 

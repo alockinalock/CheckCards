@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Piece : MonoBehaviour
 {
+    public GameObject highlight;
 
     public bool isWhite;
     public bool isKing;
@@ -58,4 +59,10 @@ public class Piece : MonoBehaviour
         return false;
 
     }
+
+    public void SetHighlightStatus(bool status)
+    {
+        highlight.SetActive(status);
+    }
+
 }
