@@ -30,6 +30,7 @@ public class CheckersBoard : MonoBehaviour
     {
         GenerateBoard();
         isWhiteTurn = true;
+        isWhite = true;
     }
 
     private void Update()
@@ -102,7 +103,7 @@ public class CheckersBoard : MonoBehaviour
     }
 
     // For some reason, this function still works even if you do not pass in a value for p. Let's leave that for now...
-    private void HighlightSelectedPiece(Piece p, bool status)
+    public void HighlightSelectedPiece(Piece p, bool status)
     {
         if(IsMouseOverBoard())
         {
@@ -177,7 +178,7 @@ public class CheckersBoard : MonoBehaviour
                 Debug.Log("4");
                 // check for kills
                 // are we sure this works here ... FIXME
-                if (Mathf.Abs(x2 - x2) == 2)
+                if (Mathf.Abs(x2 - x1) == 2)
                 {
                     Debug.Log("5");
                     Piece p = pieces[(x1 + x2) / 2, (y1 + y2) / 2];
@@ -185,7 +186,7 @@ public class CheckersBoard : MonoBehaviour
                     {
                         Debug.Log("6");
                         pieces[(x1 + x2) / 2, (y1 + y2) / 2] = null;
-                        Destroy(p);
+                        Destroy(p.gameObject);
                     }
                 }
 
@@ -216,6 +217,7 @@ public class CheckersBoard : MonoBehaviour
         startDrag = Vector2.zero;
 
         isWhiteTurn = !isWhiteTurn;
+        isWhite = !isWhite;
         CheckVictory();
     }
 
