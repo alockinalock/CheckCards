@@ -20,7 +20,7 @@ public class CheckersBoard : MonoBehaviour
     private bool isWhite;
     private bool isWhiteTurn;
 
-    private Piece selectedPiece;
+    public Piece selectedPiece;
 
     private Vector2 mouseOver;
     private Vector2 startDrag;
@@ -63,8 +63,9 @@ public class CheckersBoard : MonoBehaviour
                 HighlightSelectedPiece(selectedPiece, false);
                 TryMove((int)startDrag.x, (int)startDrag.y, x, y);
             }
-            else // Otherwise, select the piece at the current mouse position
-            {
+            SelectPiece(x,y);
+            if(selectedPiece != null)
+            { 
                 SelectPiece(x, y);
                 HighlightSelectedPiece(selectedPiece, true);
             }
@@ -118,8 +119,9 @@ public class CheckersBoard : MonoBehaviour
     private void SelectPiece(int x, int y)
     {
         // out of bounds check
-        if (x < 0 || x >= pieces.Length || y < 0 || y >= pieces.Length)
+        if (x < 0 || x > 8 || y < 0 || y > 8)
         {
+            Debug.Log("out of bounds piece, returning null");
             return;
         }
 
@@ -129,6 +131,7 @@ public class CheckersBoard : MonoBehaviour
             selectedPiece = p;
 
             //*****DELETE*ME*WHEN*DONE******
+            Debug.Log("printing selected piece name");
             Debug.Log(selectedPiece.name);
             //******************************
 
@@ -147,7 +150,7 @@ public class CheckersBoard : MonoBehaviour
         selectedPiece = pieces[x1, y1];
 
         // check if move is out of bounds
-        if (x2 < 0 || x2 >= pieces.Length || y2 < 0 || y2 >= pieces.Length)
+        if (x2 < 0 || x2 > 8|| y2 < 0 || y2 > 8)
         {
             Debug.Log("1");
             if (selectedPiece != null)
